@@ -138,15 +138,15 @@ Next I applied data augmentation by duplicating it twice, once with slightly clo
 
 #### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
 
-Here are five German traffic signs that I found on the web all downloaded via my shutterstock account.
+Here are five German traffic signs that I found on the web all downloaded via my Shutterstock account.
 
 | Image | details |
 |:-----:|:--------|
-| ![Bump sign][./web/download1.jpeg] | Is blurry, icons inside might make give a prediction for similar shaped sign |
-| ![Stop sign][./web/download2.jpeg] | Is covered with stickers but should predicted correctly |
-| ![End sign][./web/download3.jpeg]  | This sign is rather clear and should be easy to predict |
-| ![130 sign][./web/download4.jpeg]  | The network does not know about this particular sign as it is a newer 130 km/h sign. The network should predict a same type.
-| ![Priority sign][./web/download5.jpeg] | Is an sign from a distance and might not have enough data for good prediction |
+| ![Bump sign](./web/download1.jpeg) | Is blurry, icons inside might make give a prediction for similar shaped sign |
+| ![Stop sign](./web/download2.jpeg) | Is covered with stickers but should predicted correctly |
+| ![End sign](./web/download3.jpeg  | This sign is rather clear and should be easy to predict |
+| ![130 sign](./web/download4.jpeg)  | The network does not know about this particular sign as it is a newer 130 km/h sign. The network should predict a same type.
+| ![Priority sign](./web/download5.jpeg) | Is an sign from a distance and might not have enough data for good prediction |
 
 I expected the first three images to be classified correctly. The fourth I expected to be classified as on of the other maximum speed sign, I chose this sign to see its behaviour on images that are close to data in the training set. The last, which I purposefully did not crop to the borders of the sign, I did not expect to be classified correctly at all.
 
@@ -233,7 +233,6 @@ The last also is a false prediction. In the top five again the correct sign is l
 | 0.027 | Priority road | 12 |
 | 0.014 | Speed limit (70km/h) | 4 |
 | 0.004 | Road narrows on the right | 24 |
-
 
 According to these outcomes it seems that the model is very biased toward triangular signs. Even though the test data was augmented, the augmentation only makes the set 4 times bigger and thus the data is still skewed. Upon deeper inspection of the data it can been seen that triangular signs and round (with red edges) take op most of the set (~35 labels) Thus it is no surprise the model has a prediction preference.
 
