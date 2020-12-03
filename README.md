@@ -70,9 +70,9 @@ From these we can see that there is a wide range of lighting and image quality. 
 
 #### 1. Describe how you preprocessed the image data.
 
-The preprocessing step includes grayscaling as this improves performance time wise and memory wise as the network only needs to check one layer per image. The images are also normalized. The following images show the before and after state af on image.
+The preprocessing step includes grayscaling as this improves performance time wise and memory wise as the network only needs to check one layer per image. The images are also normalized. The following images show the before and after state when processing one image.
 
-![Preprocessing step][./explorations/preprocessing.png]
+![Preprocessing step](./explorations/preprocessing.png)
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
