@@ -107,15 +107,13 @@ First I build the network similar to the LeNet network and chose initially to tr
 * 128 batch size
 * 50 epochs
 
-and ended up using
+Changing these settings with the LeNet implementation did not improve the accuracy and mostly worsened them.
+I ended up modifying the Lenet architecture and applied the following settings
 
 * 0.0005 as learning rate
 * 0.5 keep probability
 * 2056 batch size
 * 45 epochs
-
-
-Changing these settings with the LeNet implementation did not improve the accuracy.  
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93.
 
@@ -127,12 +125,13 @@ My final model results were:
 * validation set accuracy 0.952
 * test set accuracy 0.947
 
-
-A few iterations of learning showed that the network could not get higher than around 90% accuracy.
+A few iterations of learning showed that the initial (LeNet) network could not get higher than around 90% accuracy.
 Adding extra fully connected layers brought the accuracy down, this also happend when adding normalization layers
-between the fully connected layers. Also dropout layers didn't seem to do much between the Convolutional Layers, an approach I tried based on reading where such layers can give some performance boost s long as the dropout rate is kept low.
+between the fully connected layers. Also dropout layers didn't seem to do much between the Convolutional Layers, an approach I tried based on reading where such layers can give some performance boost as long as the dropout rate is kept low.
 
-I then decided to strech out the convolutional layers to include one extra layer by reducing the kernel sizes to 3x3 and giving them all Relu activation functions and Pool their output with 2x2 kernels and strides of 1x1. This somewhat (~2%) improved the accuracy but this was not enough. I decided to augment the data set 
+I then decided to strech out the convolutional layers to include one extra layer by reducing the kernel sizes to 3x3 and giving them all Relu activation functions and Pool their output with 2x2 kernels and strides of 1x1. This somewhat (~2%) improved the accuracy but this was not enough.
+
+Next I applied data augmentation by duplicating it twice, once with slightly clockwise rotated images and another with TBD!!!: need to check this duplication cause probably applied it twice on similar images.
 
 
 ### Test a Model on New Images
