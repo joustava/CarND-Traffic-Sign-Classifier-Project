@@ -1,4 +1,4 @@
-# **Traffic Sign Recognition** 
+# Traffic Sign Recognition
 
 > Jupyter Notebook project to explore the topic of Neural Networks by buildng a Traffic Sign Recognition NN. This project is created as one possible solution to the third project of Udacity's Nano Degree Self Driving Car Engineer in the School of Autonomous Systems.
 
@@ -12,15 +12,13 @@ The goals / steps of this project are the following:
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
 
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
+You're reading the report atm! Here is a link to my [project code](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_Acc95_latest.ipynb)
 
-You're reading it! and here is a link to my [project code](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_Acc95_latest.ipynb)
+## Data Set Summary & Exploration
 
-### Data Set Summary & Exploration
+### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
-#### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
-
-I used the pandas library to calculate summary statistics of the traffic
+I used the numpy library to calculate summary statistics of the traffic
 signs data set:
 
 * The size of training set is 34799
@@ -65,7 +63,8 @@ Included are also 10 randomly chosen images per known label to check what kind o
 | ![Sign:](./explorations/sign_samples_040.png) | ![Sign:](./explorations/sign_samples_041.png) |
 | ![Sign:](./explorations/sign_samples_042.png) | |
 
-From these we can see that there is a wide range of lighting and image quality. There even are images that are very dark.
+From these we can see that there is a wide range of lighting and image quality. There even are images that are very dark. Also, we can see that triangular signs are over represented with regards to the data set.
+
 ### Design and Test a Model Architecture
 
 #### 1. Describe how you preprocessed the image data.
@@ -140,13 +139,13 @@ Next I applied data augmentation by duplicating it twice, once with slightly clo
 
 Here are five German traffic signs that I found on the web all downloaded via my Shutterstock account.
 
-| Image | details |
-|:-----:|:--------|
-| ![Bump sign](./web/download1.jpeg) | Has extra information in the form of a sub sign, small icons inside are not clear, prediction could be for similar shaped sign |
-| ![Stop sign](./web/download2.jpeg) | Is covered with stickers but should predicted correctly |
-| ![End sign](./web/download3.jpeg)  | This sign is rather clear and should be easy to predict |
-| ![130 sign](./web/download4.jpeg)  | The network does not know about this particular sign as it is a newer 130 km/h sign. The network should predict a same type.
-| ![Priority sign](./web/download5.jpeg) | Is a sign from a distance and might not have enough data for good prediction |
+| Image | Name | details |
+|:-----:|:------:|:--------:|
+| ![Bump sign](./web/download1.jpeg) | Speed Bump | Has extra information in the form of a sub sign, small icons inside are not clear, prediction could be for similar shaped sign |
+| ![Stop sign](./web/download2.jpeg) | Stop | Is covered with stickers but should predicted correctly |
+| ![End sign](./web/download3.jpeg)  | End of... | This sign is rather clear and should be easy to predict |
+| ![130 sign](./web/download4.jpeg)  | Speed limit 130km/h | The network does not know about this particular sign as it is a newer 130 km/h sign. The network should predict a same type.
+| ![Priority sign](./web/download5.jpeg) | Priority road | Is a sign from a distance and might not have enough data for good prediction |
 
 I expected the first three images to be classified correctly. The fourth I expected to be classified as on of the other maximum speed sign, I chose this sign to see its behaviour on images that are close to data in the training set. The last, which I purposefully did not crop to the borders of the sign, I did not expect to be classified correctly at all.
 
@@ -162,12 +161,12 @@ Here are the results of the prediction:
 | Speed Limit 130 km/h | Road work |
 | Priority road        | Yield |
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 1 of the 5 traffic signs, which gives an accuracy of 20%. Two of the images
+in the custom set, the `Speed limit 130km/h` and `Priority road` were expected to be falsely predicted as the first does not exist in the test set and the second is not of good quality for the model. However the model did list the correct label in the top 5 softmaxes for 4 of the images. I think this is quite good concidering the quality of the images. 
 
-#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+#### 3. Describe how certain the model is when predicting on each of the five new images
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
-
+The code for making predictions on my final model is located in the last cell of the Ipython notebook.
 ##### Bumpy road (label 22)
 
 For the Bumpy road (label 22) image, the model is very sure that this is a slippery road sign (probability of 0.999), however this does not match the actual sign and probably due to the quality of the image other sign probabilities are not even concidered.
