@@ -96,7 +96,7 @@ My final model consisted of the following layers:
 | Fully connected	2     | Output with size of known labels              | (?, 120) -> (?, 43) |
 | RELU Activation	5			|												                        | -                   |
 
-
+The details in the images are very sublte and adding a Convolutional layer will give the network more space for recognizing features. The count of Fully connected layers was kept to two as adding more did not seem to have the disired effect of improving the accuracy. The first iterations started to fluctuate around certain accuracies from epoch ~15 onwards which can be an indication of overfitting. The added dropout layer improved overfitting and the accuracy slightly fluctuates in the last 10 or so epochs which can also be attributed to the randomnes of batched data. 
 #### 3. Describe how you trained your model
 
 First I build the network similar to the LeNet network and chose initially to train the model with proposed starting settings
@@ -130,8 +130,11 @@ between the fully connected layers. Also dropout layers didn't seem to do much b
 
 I then decided to strech out the convolutional layers to include one extra layer by reducing the kernel sizes to 3x3 and giving them all Relu activation functions and Pool their output with 2x2 kernels and strides of 1x1. This somewhat (~2%) improved the accuracy but this was not enough.
 
-Next I applied data augmentation by duplicating it twice, once with slightly clockwise rotated images and another with TBD!!!: need to check this duplication cause probably applied it twice on similar images.
+Next I applied data augmentation by duplicating it twice, once with slightly clockwise rotated images and another with anti-clockwise rotated images.
 
+On this architecture I tried also leaky Relu's in the place of the Relu's, this brought down the accuracy but it might be related to other settings I needed to tweak, I undid the change.
+
+The first iterations started to fluctuate around certain accuracies from epoch ~15 onwards which can be an indication of overfitting and thus I added a dropout layer as remedy.
 
 ### Test a Model on New Images
 
