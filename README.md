@@ -1,11 +1,8 @@
 # **Traffic Sign Recognition** 
 
-> Jupyter Notebook project to explore the topic of Neural Networks. This project is created as one possible solution to the third project of Udacity's Nano Degree Self Driving Car Engineer in the School of Autonomous Systems.
+> Jupyter Notebook project to explore the topic of Neural Networks by buildng a Traffic Sign Recognition NN. This project is created as one possible solution to the third project of Udacity's Nano Degree Self Driving Car Engineer in the School of Autonomous Systems.
+
 ## Goal
-
----
-
-**Build a Traffic Sign Recognition Project**
 
 The goals / steps of this project are the following:
 * Load the data set (see below for links to the project data set)
@@ -14,24 +11,6 @@ The goals / steps of this project are the following:
 * Use the model to make predictions on new images
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
-
-
-[//]: # (Image References)
-
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
-
-## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
-
----
-### Writeup / README
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
@@ -54,7 +33,7 @@ signs data set:
 
 Here is an exploratory visualization of the data set. The first exploration is a bar chart showing how the amount of each label per dataset.
 
-![Bar chart of labels in datasets][./explorations/class_distribution.png]
+![Bar chart of labels in datasets](./explorations/class_distribution.png)
 
 This chart shows that the datasets are split accordingly howerer each dataset has skewed data where some labels ha
 are not very well presented. This most probably will result in the network favouring certain predictions over others.
@@ -62,28 +41,28 @@ are not very well presented. This most probably will result in the network favou
 Included are also 10 randomly chosen images per known label to check what kind of data we need to work with.
 
 | Random set of 10 images per label| |
-| ![Sign:][./explorations/sign_samples_000.png] | ![Sign:][./explorations/sign_samples_001.png] |
-| ![Sign:][./explorations/sign_samples_002.png] | ![Sign:][./explorations/sign_samples_003.png] |
-| ![Sign:][./explorations/sign_samples_004.png] | ![Sign:][./explorations/sign_samples_005.png] |
-| ![Sign:][./explorations/sign_samples_006.png] | ![Sign:][./explorations/sign_samples_007.png] |
-| ![Sign:][./explorations/sign_samples_008.png] | ![Sign:][./explorations/sign_samples_009.png] |
-| ![Sign:][./explorations/sign_samples_010.png] | ![Sign:][./explorations/sign_samples_011.png] |
-| ![Sign:][./explorations/sign_samples_012.png] | ![Sign:][./explorations/sign_samples_013.png] |
-| ![Sign:][./explorations/sign_samples_014.png] | ![Sign:][./explorations/sign_samples_015.png] |
-| ![Sign:][./explorations/sign_samples_016.png] | ![Sign:][./explorations/sign_samples_017.png] |
-| ![Sign:][./explorations/sign_samples_018.png] | ![Sign:][./explorations/sign_samples_019.png] |
-| ![Sign:][./explorations/sign_samples_020.png] | ![Sign:][./explorations/sign_samples_021.png] |
-| ![Sign:][./explorations/sign_samples_022.png] | ![Sign:][./explorations/sign_samples_023.png] |
-| ![Sign:][./explorations/sign_samples_024.png] | ![Sign:][./explorations/sign_samples_025.png] |
-| ![Sign:][./explorations/sign_samples_026.png] | ![Sign:][./explorations/sign_samples_027.png] |
-| ![Sign:][./explorations/sign_samples_028.png] | ![Sign:][./explorations/sign_samples_029.png] |
-| ![Sign:][./explorations/sign_samples_030.png] | ![Sign:][./explorations/sign_samples_031.png] |
-| ![Sign:][./explorations/sign_samples_032.png] | ![Sign:][./explorations/sign_samples_033.png] |
-| ![Sign:][./explorations/sign_samples_034.png] | ![Sign:][./explorations/sign_samples_035.png] |
-| ![Sign:][./explorations/sign_samples_036.png] | ![Sign:][./explorations/sign_samples_037.png] |
-| ![Sign:][./explorations/sign_samples_038.png] | ![Sign:][./explorations/sign_samples_039.png] |
-| ![Sign:][./explorations/sign_samples_040.png] | ![Sign:][./explorations/sign_samples_041.png] |
-| ![Sign:][./explorations/sign_samples_042.png] | |
+| ![Sign:](./explorations/sign_samples_000.png) | ![Sign:](./explorations/sign_samples_001.png) |
+| ![Sign:](./explorations/sign_samples_002.png) | ![Sign:](./explorations/sign_samples_003.png) |
+| ![Sign:](./explorations/sign_samples_004.png) | ![Sign:](./explorations/sign_samples_005.png) |
+| ![Sign:](./explorations/sign_samples_006.png) | ![Sign:](./explorations/sign_samples_007.png) |
+| ![Sign:](./explorations/sign_samples_008.png) | ![Sign:](./explorations/sign_samples_009.png) |
+| ![Sign:](./explorations/sign_samples_010.png) | ![Sign:](./explorations/sign_samples_011.png) |
+| ![Sign:](./explorations/sign_samples_012.png) | ![Sign:](./explorations/sign_samples_013.png) |
+| ![Sign:](./explorations/sign_samples_014.png) | ![Sign:](./explorations/sign_samples_015.png) |
+| ![Sign:](./explorations/sign_samples_016.png) | ![Sign:](./explorations/sign_samples_017.png) |
+| ![Sign:](./explorations/sign_samples_018.png) | ![Sign:](./explorations/sign_samples_019.png) |
+| ![Sign:](./explorations/sign_samples_020.png) | ![Sign:](./explorations/sign_samples_021.png) |
+| ![Sign:](./explorations/sign_samples_022.png) | ![Sign:](./explorations/sign_samples_023.png) |
+| ![Sign:](./explorations/sign_samples_024.png) | ![Sign:](./explorations/sign_samples_025.png) |
+| ![Sign:](./explorations/sign_samples_026.png) | ![Sign:](./explorations/sign_samples_027.png) |
+| ![Sign:](./explorations/sign_samples_028.png) | ![Sign:](./explorations/sign_samples_029.png) |
+| ![Sign:](./explorations/sign_samples_030.png) | ![Sign:](./explorations/sign_samples_031.png) |
+| ![Sign:](./explorations/sign_samples_032.png) | ![Sign:](./explorations/sign_samples_033.png) |
+| ![Sign:](./explorations/sign_samples_034.png) | ![Sign:](./explorations/sign_samples_035.png) |
+| ![Sign:](./explorations/sign_samples_036.png) | ![Sign:](./explorations/sign_samples_037.png) |
+| ![Sign:](./explorations/sign_samples_038.png) | ![Sign:](./explorations/sign_samples_039.png) |
+| ![Sign:](./explorations/sign_samples_040.png) | ![Sign:](./explorations/sign_samples_041.png) |
+| ![Sign:](./explorations/sign_samples_042.png) | |
 
 From these we can see that there is a wide range of lighting and image quality. There even are images that are very dark.
 ### Design and Test a Model Architecture
@@ -97,21 +76,6 @@ The preprocessing step includes grayscaling as this improves performance time wi
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
 My final model consisted of the following layers:
-
-Convolution layer 1 OUTPUT:  (?, 30, 30, 16)
-Pool layer 1 OUTPUT:  (?, 15, 15, 16)
-
-Convolution layer  2 OUTPUT:  (?, 13, 13, 64)
-Pool layer 2 OUTPUT:  (?, 6, 6, 64)
-
-Convolution layer  3 OUTPUT:  (?, 4, 4, 256)
-
-Pool layer 3 OUTPUT:  (?, 2, 2, 256)
-
-Flatten layer OUTPUT:  (?, 1024)
-
-Fully connected layer 1 OUTPUT:  (?, 120)
-Output layer:  (?, 43)
 
 | Layer         		    | Description	        					                | In -> Out       |
 |:---------------------:|:---------------------------------------------:|:---------------:|
@@ -132,6 +96,7 @@ Output layer:  (?, 43)
 | Fully connected	2     | Output with size of known labels              | (?, 120) -> (?, 43) |
 | RELU Activation	5			|												                        | -                   |
 
+
 #### 3. Describe how you trained your model
 
 First I build the network similar to the LeNet network and chose initially to train the model with proposed starting settings
@@ -141,11 +106,15 @@ First I build the network similar to the LeNet network and chose initially to tr
 * 128 batch size
 * 50 epochs
 
-A few iterations of learning showed that the network could not get higher than around 90% accuracy.
-Adding extra fully connected layers brought the accuracy down, this also happend when adding normalization layers
-between the fully connected layers. Also dropout layers didn't seem to do much between the Concolutional Layers, an approach I tried based on reading where such layers can give some performance boost s long as the dropout rate is kept low.
+and ended up using
 
-I then decided to strech out the convolutional layers to include one extra layer by reducing the kernel sizes to 3x3 and giving them all Relu activation functions and Pool their output with 2x2 kernels and strides of 1x1.
+* 0.0005 as learning rate
+* 0.5 keep probability
+* 2056 batch size
+* 45 epochs
+
+
+Changing these settings with the LeNet implementation did not improve the accuracy.  
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93.
 
@@ -157,18 +126,13 @@ My final model results were:
 * validation set accuracy 0.952
 * test set accuracy 0.947
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
+A few iterations of learning showed that the network could not get higher than around 90% accuracy.
+Adding extra fully connected layers brought the accuracy down, this also happend when adding normalization layers
+between the fully connected layers. Also dropout layers didn't seem to do much between the Convolutional Layers, an approach I tried based on reading where such layers can give some performance boost s long as the dropout rate is kept low.
+
+I then decided to strech out the convolutional layers to include one extra layer by reducing the kernel sizes to 3x3 and giving them all Relu activation functions and Pool their output with 2x2 kernels and strides of 1x1. This somewhat (~2%) improved the accuracy but this was not enough. I decided to augment the data set 
+
 
 ### Test a Model on New Images
 
