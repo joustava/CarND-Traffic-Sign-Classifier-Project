@@ -142,11 +142,11 @@ Here are five German traffic signs that I found on the web all downloaded via my
 
 | Image | details |
 |:-----:|:--------|
-| ![Bump sign](./web/download1.jpeg) | Is blurry, icons inside might make give a prediction for similar shaped sign |
+| ![Bump sign](./web/download1.jpeg) | Has extra information in the form of a sub sign, small icons inside are not clear, prediction could be for similar shaped sign |
 | ![Stop sign](./web/download2.jpeg) | Is covered with stickers but should predicted correctly |
 | ![End sign](./web/download3.jpeg)  | This sign is rather clear and should be easy to predict |
 | ![130 sign](./web/download4.jpeg)  | The network does not know about this particular sign as it is a newer 130 km/h sign. The network should predict a same type.
-| ![Priority sign](./web/download5.jpeg) | Is an sign from a distance and might not have enough data for good prediction |
+| ![Priority sign](./web/download5.jpeg) | Is a sign from a distance and might not have enough data for good prediction |
 
 I expected the first three images to be classified correctly. The fourth I expected to be classified as on of the other maximum speed sign, I chose this sign to see its behaviour on images that are close to data in the training set. The last, which I purposefully did not crop to the borders of the sign, I did not expect to be classified correctly at all.
 
