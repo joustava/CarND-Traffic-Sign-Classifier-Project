@@ -35,12 +35,13 @@ Here is an exploratory visualization of the data set. The first exploration is a
 
 ![Bar chart of labels in datasets](./explorations/class_distribution.png)
 
-This chart shows that the datasets are split accordingly howerer each dataset has skewed data where some labels ha
+This chart shows that the datasets are split accordingly howerer each dataset has skewed data where some labels
 are not very well presented. This most probably will result in the network favouring certain predictions over others.
 
 Included are also 10 randomly chosen images per known label to check what kind of data we need to work with.
 
-| Random set of 10 images per label| |
+| Random set of 10 images per label | Random set of 10 images per label |
+|:---------------------------------------------:|:----------------------------------------------|
 | ![Sign:](./explorations/sign_samples_000.png) | ![Sign:](./explorations/sign_samples_001.png) |
 | ![Sign:](./explorations/sign_samples_002.png) | ![Sign:](./explorations/sign_samples_003.png) |
 | ![Sign:](./explorations/sign_samples_004.png) | ![Sign:](./explorations/sign_samples_005.png) |
