@@ -5,6 +5,7 @@
 ## Goal
 
 The goals / steps of this project are the following:
+
 * Load the data set (see below for links to the project data set)
 * Explore, summarize and visualize the data set
 * Design, train and test a model architecture
@@ -12,9 +13,9 @@ The goals / steps of this project are the following:
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
 
-You're reading the report atm! Here is a link to my [project code](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_Acc95_latest.ipynb)
+You're reading the report atm! Here is a link to my [project code](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_Acc97_latest.ipynb)
 
-## Data Set Summary & Exploration
+## Exploratory Data Analysis
 
 ### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
@@ -27,13 +28,13 @@ signs data set:
 * The shape of a traffic sign image is (32, 32)
 * The number of unique classes/labels in the data set is 43
 
-#### 2. Include an exploratory visualization of the dataset.
+#### 2. Include an exploratory visualization of the dataset
 
 Here is an exploratory visualization of the data set. The first exploration is a bar chart showing how the amount of each label per dataset.
 
 ![Bar chart of labels in datasets](./explorations/class_distribution.png)
 
-This chart shows that the datasets are split accordingly howerer each dataset has skewed data where some labels
+This chart shows that the datasets are split accordingly however, each dataset has skewed data where some labels
 are not very well presented. This most probably will result in the network favouring certain predictions over others.
 
 Included are also 10 randomly chosen images per known label to check what kind of data we need to work with.
@@ -67,7 +68,7 @@ From these we can see that there is a wide range of lighting and image quality. 
 
 ### Design and Test a Model Architecture
 
-#### 1. Describe how you preprocessed the image data.
+#### 1. Describe how you preprocessed the image data
 
 The preprocessing step includes grayscaling as this improves performance time wise and memory wise as the network only needs to check one layer per image. The images are also normalized. The following images show the before and after state when processing one image.
 
@@ -109,20 +110,29 @@ First I build the network similar to the LeNet network and chose initially to tr
 Changing these settings with the LeNet implementation did not improve the accuracy and mostly worsened them.
 I ended up modifying the Lenet architecture and applied the following settings
 
-* 0.0005 as learning rate
+* 0.001 as learning rate (Default of the AdamOptimizer)
 * 0.5 keep probability
-* 2056 batch size
-* 45 epochs
+* 1024 batch size
+* 50 epochs
 
+The initial learning rate is adapted by the AdamOptimizer throughout the learning process for each Weight in the network.
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93.
 
 > Accuracies based on the model saved in ./models/traffic-sign-model2.ckpt
 
-My final model results were:
+Model 2 results were:
 
 * training set accuracy 0.999
 * validation set accuracy 0.952
 * test set accuracy 0.947
+
+> Accuracies based on the model saved in ./models/traffic-sign-model3.ckpt
+
+My final model results were:
+
+* training set accuracy 0.999
+* validation set accuracy 0.975
+* test set accuracy 0.960
 
 A few iterations of learning showed that the initial (LeNet) network could not get higher than around 90% accuracy.
 Adding extra fully connected layers brought the accuracy down, this also happend when adding normalization layers
@@ -135,6 +145,8 @@ Next I applied data augmentation by duplicating it twice, once with slightly clo
 On this architecture I tried also leaky Relu's in the place of the Relu's, this brought down the accuracy but it might be related to other settings I needed to tweak, I undid the change.
 
 The first iterations started to fluctuate around certain accuracies from epoch ~15 onwards which can be an indication of overfitting and thus I added a dropout layer as remedy.
+
+Initially I used and AdamOptimizer with a low learning rate of 0.0001 instead of the default 0.001. The default setting is sufficient in this network and together with a lower batch size of 1024 raise the accuracy by ~1.5%.
 
 ### Test a Model on New Images
 
@@ -152,7 +164,7 @@ Here are five German traffic signs that I found on the web all downloaded via my
 
 I expected the first three images to be classified correctly. The fourth I expected to be classified as on of the other maximum speed sign, I chose this sign to see its behaviour on images that are close to data in the training set. The last, which I purposefully did not crop to the borders of the sign, I did not expect to be classified correctly at all.
 
-#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set.
+#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set
 
 Here are the results of the prediction:
 
@@ -164,8 +176,8 @@ Here are the results of the prediction:
 | Speed Limit 130 km/h | Road work |
 | Priority road        | Yield |
 
-The model was able to correctly guess 1 of the 5 traffic signs, which gives an accuracy of 20%. Two of the images
-in the custom set, the `Speed limit 130km/h` and `Priority road` were expected to be falsely predicted as the first does not exist in the test set and the second is not of good quality for the model. However the model did list the correct label in the top 5 softmaxes for 4 of the images. I think this is quite good concidering the quality of the images. 
+The model was able to correctly guess 1 of the 5 traffic signs, which gives an accuracy of 20% compared to a testing accuracy of ~95%. Two of the images
+in the custom set, the `Speed limit 130km/h` and `Priority road` were expected to be falsely predicted as the first does not exist in the test set and the second is not of good quality for the model. However the model did list the correct label in the top 5 softmaxes for 4 of the images. Keeping this in mind an accuracy 0f 20% is quite good concidering the quality of the images.
 
 #### 3. Describe how certain the model is when predicting on each of the five new images
 
