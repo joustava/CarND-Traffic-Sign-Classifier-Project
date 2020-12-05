@@ -13,7 +13,7 @@ The goals / steps of this project are the following:
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
 
-You're reading the report atm! Here is a link to my [project code](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_Acc97_latest.ipynb)
+You're reading the report atm! Here is a link to my [project code](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_model_4.ipynb)
 
 ## Exploratory Data Analysis
 
@@ -120,23 +120,8 @@ I ended up modifying the Lenet architecture and applied the following settings
 The initial learning rate is adapted by the AdamOptimizer throughout the learning process for each Weight in the network.
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93.
 
-> Accuracies based on the model saved in ./models/traffic-sign-model2.ckpt
 
-Model 2 results were:
-
-* training set accuracy 0.999
-* validation set accuracy 0.952
-* test set accuracy 0.947
-
-> Accuracies based on the model saved in ./models/traffic-sign-model3.ckpt
-
-My final model results were:
-
-* training set accuracy 0.999
-* validation set accuracy 0.975
-* test set accuracy 0.960
-
-A few iterations of learning showed that the initial (LeNet) network could not get higher than around 90% accuracy.
+A few iterations of training showed that the initial (LeNet) network could not get higher than around 90% accuracy.
 Adding extra fully connected layers brought the accuracy down, this also happend when adding normalization layers
 between the fully connected layers. Also dropout layers didn't seem to do much between the Convolutional Layers, an approach I tried based on reading where such layers can give some performance boost as long as the dropout rate is kept low.
 
@@ -146,13 +131,26 @@ Next I applied data augmentation by duplicating it twice, once with slightly clo
 
 On this architecture I tried also leaky Relu's in the place of the Relu's, this brought down the accuracy but it might be related to other settings I needed to tweak, I undid the change.
 
-The first iterations started to fluctuate around certain accuracies from epoch ~15 onwards which can be an indication of overfitting and thus I added a dropout layer as remedy.
+The first iterations started to fluctuate around certain accuracies from epoch ~15 onwards which can be an indication of overfitting and thus I added a dropout layer as remedy. This then resulted in
 
-Initially I used and AdamOptimizer with a low learning rate of 0.0001 instead of the default 0.001. The default setting is sufficient in this network and together with a lower batch size of 1024 raise the accuracy by ~1.5%.
+> Accuracies based on the model saved in ./models/traffic-sign-model2.ckpt
+
+* training set accuracy 0.999
+* validation set accuracy 0.952
+* test set accuracy 0.947
+
+Initially an AdamOptimizer was used configured with a low learning rate of 0.0001 instead of the default 0.001. The default setting is sufficient in this network and together with a lower batch size of 1024 raised the accuracy by ~1.5% and gave the following accuracies:
+
+> Accuracies based on the model saved in ./models/traffic-sign-model4.ckpt
+
+* training set accuracy 0.999
+* validation set accuracy 0.970
+* test set accuracy 0.957
+
 
 ### Test a Model on New Images
 
-#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify
 
 Here are five German traffic signs that I found on the web all downloaded via my Shutterstock account.
 
@@ -168,7 +166,10 @@ I expected the first three images to be classified correctly. The fourth I expec
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set
 
-Here are the results of the prediction:
+The model was able to correctly guess 1 of the 5 traffic signs with model 2, which gives an accuracy of 20% compared to a testing accuracy of ~97%. Two of the images
+in the custom set, the `Speed limit 130km/h` and `Priority road` were expected to be falsely predicted as the first does not exist in the test set and the second is not of good quality for the model. However the model did list the correct label in the top 5 softmaxes for 4 of the images. Keeping this in mind an accuracy 0f 20% is quite good concidering the quality of the images.
+
+> Predictions based on the model saved in ./models/traffic-sign-model2.ckpt
 
 | Image             | Prediction   |
 |:--------------------:|:-------------:|
@@ -178,23 +179,33 @@ Here are the results of the prediction:
 | Speed Limit 130 km/h | Road work |
 | Priority road        | Yield |
 
-The model was able to correctly guess 1 of the 5 traffic signs, which gives an accuracy of 20% compared to a testing accuracy of ~95%. Two of the images
-in the custom set, the `Speed limit 130km/h` and `Priority road` were expected to be falsely predicted as the first does not exist in the test set and the second is not of good quality for the model. However the model did list the correct label in the top 5 softmaxes for 4 of the images. Keeping this in mind an accuracy 0f 20% is quite good concidering the quality of the images.
+The improvements in test/validation accuracy in model 4 increased the accuracy to 0.4 and made 2 correct predictions
+
+> Predictions based on the model saved in ./models/traffic-sign-model4.ckpt
+
+| Image             | Prediction   |
+|:--------------------:|:-------------:|
+| Bumpy Road           | No passing |
+| Stop Sign            | Stop    |
+| End all              | End of all speed and passing limits |
+| Speed Limit 130 km/h | Speed limit (50km/h) |
+| Priority road        | Yield |
 
 #### 3. Describe how certain the model is when predicting on each of the five new images
 
 The code for making predictions on my final model is located in the last cell of the Ipython notebook.
+
 ##### Bumpy road (label 22)
 
-For the Bumpy road (label 22) image, the model is very sure that this is a slippery road sign (probability of 0.999), however this does not match the actual sign and probably due to the quality of the image other sign probabilities are not even concidered.
+For the Bumpy road (label 22) image, the model is very sure that this is a `No passing` sign (probability of 0.995), however this does not match the actual sign and probably due to the quality of the icon on the sign other signs are concidered.
 
-| Probability | Prediction                               | Label |
-|:-----------:|:----------------------------------------:|:--:|
-| 0.999       | Slippery road                            | 23 |
-| 0.0         | Dangerous curve to the right             | 20 |
-| 0.0         | Beware of ice/snow                       | 30 |
-| 0.0         | Vehicles over 3.5 metric tons prohibited | 16 |
-| 0.0         | No passing                               | 9  |
+| Probability | Prediction| Label |
+|:-----------:|:---------:|:------| 
+| 0.995 | No passing | 9 |
+| 0.004 | Slippery road | 23 |
+| 0.0 | Turn left ahead | 34 |
+| 0.0 | Speed limit (60km/h) | 3 |
+| 0.0 | Keep right | 38 |
 
 ##### Stop sign (label 14)
 
@@ -204,39 +215,36 @@ model can detect these well.
 
 | Probability | Prediction| Label |
 |:-----------:|:---------:|:------| 
-| 0.976 | Stop | 14 |
-| 0.013 | Traffic signals | 26 |
-| 0.005 | General caution | 18 |
-| 0.002 | Road work | 25 |
-| 0.0 | Bicycles crossing | 29 |
+| 0.999 | Stop | 14 |
+| 0.0 | Yield | 13 |
+| 0.0 | Speed limit (70km/h) | 4 |
+| 0.0 | Speed limit (30km/h) | 1 |
+| 0.0 | Road work | 25 |
 
 ##### Speed limit - 130km/h (label x)
 
-The 130km/h speed limit sign is wrongly predicted to be a wild animals crossing. This time there are other
-signs concidered in the top five. Among the predictions is speed limit 30km/h which is visually very close.
-Also other speed signs are concidered. Of course the 130 km/h is not in the test set and the model does not know about it. Even though it conciders other similar signs it predicts it as wild animals which is completely off.
+The 130km/h speed limit sign is 'wrongly' predicted to be a `Speed limit (50km/h)`. Among the predictions is `Speed limit (60km/h)` which is visually very close. Also other speed signs are concidered. Of course a `Speed limit (130km/h)` not in the test set and the model does not know about it, thus ths is expected.
 
 | Probability | Prediction| Label |
 |:-----------:|:---------:|:------| 
-| 0.729 | Wild animals crossing | 31 |
-| 0.187 | Speed limit (50km/h) | 2 |
-| 0.082 | Speed limit (60km/h) | 3 |
-| 0.0 | Speed limit (30km/h) | 1 |
-| 0.0 | Slippery road | 23 |
+| 0.997 | Speed limit (50km/h) | 2 |
+| 0.001 | No passing | 9 |
+| 0.0 | Speed limit (60km/h) | 3 |
+| 0.0 | No entry | 17 |
+| 0.0 | Right-of-way at the next intersection | 11 |
 
 ##### End of all speed and passing limits (label 32)
 
-This sign is also predicted wrong. This time the second best guess is the correct one. I suspect that the model
-is biased to triangular signs as even with the previous speed limit image it predicts a sign which is not round.
+This sign is also predicted correctly with confidence.
 
 End of all speed and passing limits 32
 | Probability | Prediction| Label |
 |:-----------:|:---------:|:------| 
-| 0.969 | Road work | 25 |
-| 0.03 | End of all speed and passing limits | 32 |
+| 0.992 | End of all speed and passing limits | 32 |
+| 0.007 | Keep left | 39 |
+| 0.0 | Road work | 25 |
 | 0.0 | Traffic signals | 26 |
-| 0.0 | Keep left | 39 |
-| 0.0 | End of speed limit (80km/h) | 6 |
+| 0.0 | Bumpy road | 22 |
 
 ##### Priority road (label 12)
 
@@ -244,15 +252,33 @@ The last also is a false prediction. In the top five again the correct sign is l
 
 | Probability | Prediction| Label |
 |:-----------:|:---------:|:------| 
-| 0.487 | Yield | 13 |
-| 0.46 | Road work | 25 |
-| 0.027 | Priority road | 12 |
-| 0.014 | Speed limit (70km/h) | 4 |
-| 0.004 | Road narrows on the right | 24 |
+| 0.998 | Yield | 13 |
+| 0.0 | Road work | 25 |
+| 0.0 | Priority road | 12 |
+| 0.0 | Speed limit (30km/h) | 1 |
+| 0.0 | Speed limit (60km/h) | 3 |
 
 According to these outcomes it seems that the model is very biased toward triangular signs. Even though the test data was augmented, the augmentation only makes the set 4 times bigger and thus the data is still skewed. Upon deeper inspection of the data it can been seen that triangular signs and round (with red edges) take op most of the set (~35 labels) Thus it is no surprise the model has a prediction preference.
 
-### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
-#### 1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
+### Visualizing the Neural Network
+#### 1. Discuss the visual output of your trained network's feature maps
+
+In this step we use predefined code for visualizing the weight in a given layer in our network.
+Visualising the weights means that for each feature map in a layer grayscale images are produced from
+the values of the weights.
+
+Each of the paragraph below will discuss the featuremap output for the custom images we tested earlier.
 
 -
+
+## Conclusion
+
+-
+## Resources and further reading
+
+* [Traffic Sign Recognition with Multi-Scale Convolutional Networks](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf)
+* [Explainable AI](https://enterprisersproject.com/article/2019/5/what-explainable-ai)
+* [Gentle Introduction to the Adam Optimization Algorithm for Deep Learning](https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/)
+* [Simple and efficient data augmentations using the Tensorfow tf.Data and Dataset API](https://www.wouterbulten.nl/blog/tech/data-augmentation-using-tensorflow-data-dataset/)
+* [Fixing imbalanced datasets](https://towardsdatascience.com/having-an-imbalanced-dataset-here-is-how-you-can-solve-it-1640568947eb)
+* [Notes on How to choose Optimizer In Keras](https://www.dlology.com/blog/quick-notes-on-how-to-choose-optimizer-in-keras/)
