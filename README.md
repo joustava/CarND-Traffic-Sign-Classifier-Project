@@ -13,7 +13,10 @@ The goals / steps of this project are the following:
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
 
-You're reading the report atm! Here is a link to my [project code](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_model_4.ipynb)
+You're reading the report atm! Here is a link to my final [project code](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_model_5.ipynb)
+
+This repository contains a few more notebooks and links to them that cover certain versions of the model used in this writeup.
+Most of the writeup pertains to the latest version linked to previsouly. I'll refer to older versions when needed, e.g to cover improvements and comparisons.
 
 ## Exploratory Data Analysis
 
@@ -76,6 +79,8 @@ The preprocessing step includes grayscaling as this improves performance time wi
 
 Grayscaling was chosen as it gave better results on average than RGB images according to the [Traffic Sign Recognition with Multi-Scale Convolutional Networks](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) by Yann LeCun, the original creator of the LeNet architecture.
 
+Until **model 4** and [Traffic_Sign_Classifier_model_4.ipynb]([notebook](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_model_4.ipynb))
+
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
 My final model consisted of the following layers:
@@ -133,7 +138,7 @@ On this architecture I tried also leaky Relu's in the place of the Relu's, this 
 
 The first iterations started to fluctuate around certain accuracies from epoch ~15 onwards which can be an indication of overfitting and thus I added a dropout layer as remedy. This then resulted in
 
-> Accuracies based on the model saved in ./models/traffic-sign-model2.ckpt
+> Accuracies based on the model saved in ./models/traffic-sign-model2.ckpt and was ran within [Traffic_Sign_Classifier_model_2.ipynb](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_model_2.ipynb)
 
 * training set accuracy 0.999
 * validation set accuracy 0.952
@@ -141,7 +146,7 @@ The first iterations started to fluctuate around certain accuracies from epoch ~
 
 Initially an AdamOptimizer was used configured with a low learning rate of 0.0001 instead of the default 0.001. The default setting is sufficient in this network and together with a lower batch size of 1024 raised the accuracy by ~1.5% and gave the following accuracies:
 
-> Accuracies based on the model saved in ./models/traffic-sign-model4.ckpt
+> Accuracies based on the model saved in ./models/traffic-sign-model4.ckpt and was ran within [Traffic_Sign_Classifier_model_4.ipynb](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_model_4.ipynb)
 
 * training set accuracy 0.999
 * validation set accuracy 0.970
@@ -162,14 +167,14 @@ Here are five German traffic signs that I found on the web all downloaded via my
 | ![130 sign](./web/download4.jpeg)  | Speed limit 130km/h | The network does not know about this particular sign as it is a newer 130 km/h sign. The network should predict a same type.
 | ![Priority sign](./web/download5.jpeg) | Priority road | Is a sign from a distance and might not have enough data for good prediction |
 
-I expected the first three images to be classified correctly. The fourth I expected to be classified as on of the other maximum speed sign, I chose this sign to see its behaviour on images that are close to data in the training set. The last, which I purposefully did not crop to the borders of the sign, I did not expect to be classified correctly at all.
+Before experimenting I expected the first three images to be classified correctly. The fourth I expected to be classified as on of the other maximum speed sign, I chose this sign to see its behaviour on images that are close to data in the training set. The last, which I purposefully did not crop to the borders of the sign, I did not expect to be classified correctly at all.
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set
 
-The model was able to correctly guess 1 of the 5 traffic signs with model 2, which gives an accuracy of 20% compared to a testing accuracy of ~97%. Two of the images
-in the custom set, the `Speed limit 130km/h` and `Priority road` were expected to be falsely predicted as the first does not exist in the test set and the second is not of good quality for the model. However the model did list the correct label in the top 5 softmaxes for 4 of the images. Keeping this in mind an accuracy 0f 20% is quite good concidering the quality of the images.
+The **model 4** was able to correctly predict 1 of the 5 traffic signs and gave an accuracy of 20% compared to a testing accuracy of ~97%. Two of the images
+in the custom set, the `Speed limit 130km/h` and `Priority road` were expected to be falsely predicted as the first does not exist in the test set and the second is not of good quality for the model. However the model did list the correct label in the top 5 softmaxes for 4 of the images. Keeping the low quality of the images in mind an accuracy 0f 20% is good.
 
-> Predictions based on the model saved in ./models/traffic-sign-model2.ckpt
+> Predictions based on the model saved in ./models/traffic-sign-model2.ckpt and ran in [Traffic_Sign_Classifier_model_2.ipynb](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_model_2.ipynb)
 
 | Image             | Prediction   |
 |:--------------------:|:-------------:|
@@ -179,9 +184,9 @@ in the custom set, the `Speed limit 130km/h` and `Priority road` were expected t
 | Speed Limit 130 km/h | Road work |
 | Priority road        | Yield |
 
-The improvements in test/validation accuracy in model 4 increased the accuracy to 0.4 and made 2 correct predictions
+The improvements in test/validation accuracy in **model 4** increased the accuracy to 0.4 and made 2 correct predictions
 
-> Predictions based on the model saved in ./models/traffic-sign-model4.ckpt
+> Predictions based on the model saved in ./models/traffic-sign-model4.ckpt and ran in [Traffic_Sign_Classifier_model_4.ipynb](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_model_4.ipynb)
 
 | Image             | Prediction   |
 |:--------------------:|:-------------:|
@@ -191,13 +196,15 @@ The improvements in test/validation accuracy in model 4 increased the accuracy t
 | Speed Limit 130 km/h | Speed limit (50km/h) |
 | Priority road        | Yield |
 
+This is twice as good as model 2.
+
 #### 3. Describe how certain the model is when predicting on each of the five new images
 
 The code for making predictions on my final model is located in the last cell of the Ipython notebook.
 
 ##### Bumpy road (label 22)
 
-For the Bumpy road (label 22) image, the model is very sure that this is a `No passing` sign (probability of 0.995), however this does not match the actual sign and probably due to the quality of the icon on the sign other signs are concidered.
+For the Bumpy road (label 22) image, **model 4** is very sure that this is a `No passing` sign (probability of 0.995), however this does not match the actual sign and probably due to the quality of the icon on the sign other signs are concidered.
 
 | Probability | Prediction| Label |
 |:-----------:|:---------:|:------| 
@@ -209,7 +216,7 @@ For the Bumpy road (label 22) image, the model is very sure that this is a `No p
 
 ##### Stop sign (label 14)
 
-For the stop sign (label 14) image, again the model is very sure it actually is the stop sign even though the 
+For the stop sign (label 14) image, again **model 4** is very sure it actually is the stop sign even though the 
 sign is covered with stickers. My hypothesis is that this sign has edges that are very distinctive and thus the 
 model can detect these well.
 
@@ -223,7 +230,7 @@ model can detect these well.
 
 ##### Speed limit - 130km/h (label x)
 
-The 130km/h speed limit sign is 'wrongly' predicted to be a `Speed limit (50km/h)`. Among the predictions is `Speed limit (60km/h)` which is visually very close. Also other speed signs are concidered. Of course a `Speed limit (130km/h)` not in the test set and the model does not know about it, thus ths is expected.
+The 130km/h speed limit sign is 'wrongly' predicted to be a `Speed limit (50km/h)` by **model 4**. Among the predictions is `Speed limit (60km/h)` which is visually very close. Also other speed signs are concidered. Of course a `Speed limit (130km/h)` not in the test set and the model does not know about it, thus ths is expected.
 
 | Probability | Prediction| Label |
 |:-----------:|:---------:|:------| 
@@ -235,7 +242,7 @@ The 130km/h speed limit sign is 'wrongly' predicted to be a `Speed limit (50km/h
 
 ##### End of all speed and passing limits (label 32)
 
-This sign is also predicted correctly with confidence.
+This sign is also predicted correctly with confidence by **model 4**.
 
 End of all speed and passing limits 32
 | Probability | Prediction| Label |
@@ -248,7 +255,7 @@ End of all speed and passing limits 32
 
 ##### Priority road (label 12)
 
-The last also is a false prediction. In the top five again the correct sign is listed. In this case the model is not sure but again the two most probable are triangular signs.
+The last is a false prediction. In the top five again the correct sign is listed. In this case **model 4** is not very sure about its prediction. Again the two most probable are triangular signs.
 
 | Probability | Prediction| Label |
 |:-----------:|:---------:|:------| 
@@ -258,7 +265,7 @@ The last also is a false prediction. In the top five again the correct sign is l
 | 0.0 | Speed limit (30km/h) | 1 |
 | 0.0 | Speed limit (60km/h) | 3 |
 
-According to these outcomes it seems that the model is very biased toward triangular signs. Even though the test data was augmented, the augmentation only makes the set 4 times bigger and thus the data is still skewed. Upon deeper inspection of the data it can been seen that triangular signs and round (with red edges) take op most of the set (~35 labels) Thus it is no surprise the model has a prediction preference.
+According to these outcomes it seems that **model 4** is very biased toward triangular signs. Even though the test data was augmented, the augmentation only makes the set 4 times bigger and thus the data is still skewed. Upon deeper inspection of the data it can been seen that triangular signs and round (with red edges) take op most of the set (~35 labels) Thus it is no surprise the model has a prediction preference.
 
 ### Visualizing the Neural Network
 #### 1. Discuss the visual output of your trained network's feature maps
@@ -273,7 +280,11 @@ Each of the paragraph below will discuss the featuremap output for the custom im
 
 ## Conclusion
 
--
+TBD: 
+- how important a good dataset/augmentation is.
+- how it is important to take the time to experiment
+- very interesting to visualise the data
+
 ## Resources and further reading
 
 * [Traffic Sign Recognition with Multi-Scale Convolutional Networks](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf)
