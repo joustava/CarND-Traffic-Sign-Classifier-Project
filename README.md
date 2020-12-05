@@ -13,7 +13,7 @@ The goals / steps of this project are the following:
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
 
-You're reading the report atm! Here is a link to my final [project code](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_model_5.ipynb)
+You're reading the report atm! Here is a link to my final [project code](./Traffic_Sign_Classifier_model_4.ipynb)
 
 This repository contains a few more notebooks and links to them that cover certain versions of the model used in this writeup.
 Most of the writeup pertains to the latest version linked to previsouly. I'll refer to older versions when needed, e.g to cover improvements and comparisons.
