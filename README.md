@@ -74,6 +74,8 @@ The preprocessing step includes grayscaling as this improves performance time wi
 
 ![Preprocessing step](./explorations/preprocessing.png)
 
+Grayscaling was chosen as it gave better results on average than RGB images according to the [Traffic Sign Recognition with Multi-Scale Convolutional Networks](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) by Yann LeCun, the original creator of the LeNet architecture.
+
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
 My final model consisted of the following layers:
