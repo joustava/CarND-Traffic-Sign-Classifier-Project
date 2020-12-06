@@ -79,8 +79,6 @@ The preprocessing step includes grayscaling as this improves performance time wi
 
 Grayscaling was chosen as it gave better results on average than RGB images according to the [Traffic Sign Recognition with Multi-Scale Convolutional Networks](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) by Yann LeCun, the original creator of the LeNet architecture.
 
-Until **model 4** and [Traffic_Sign_Classifier_model_4.ipynb]([notebook](https://github.com/joustava/CarND-Traffic-Sign-Classifier-Project/blob/main/Traffic_Sign_Classifier_model_4.ipynb))
-
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
 My final model consisted of the following layers:
@@ -278,16 +276,14 @@ In this step we use predefined code for visualizing the weight in a given layer 
 Visualising the weights means that for each feature map in a layer grayscale images are produced from
 the values of the weights.
 
-Each of the paragraph below will discuss the featuremap output for the custom images we tested earlier.
-
--
+Please refer to the last set of images in the notebook to see the result of this step. It is really interesting to see how the network percieves those images it is not trained well for.
 
 ## Conclusion
 
-TBD: 
-- how important a good dataset/augmentation is.
-- how it is important to take the time to experiment
-- very interesting to visualise the data
+The network created had good accuracies for the training (0.999), validation (0.970) and test (0.957) sets.
+It could even detect 2 out of 5 images (0.400) from the custom set of 5 random German traffic signs which is good concidering the network has never learned about these picures. 
+
+I learned that it is very important to do deep explorations of the data and that additional work is required to squeeze out some more accuracy percentages from the model. The current model is good enough and will surely benefit from doing smart augmentations on the dataset using the Tensorfow tf.Data and Dataset API's.
 
 ## Resources and further reading
 
