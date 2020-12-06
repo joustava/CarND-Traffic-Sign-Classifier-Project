@@ -104,7 +104,11 @@ My final model consisted of the following layers:
 | Fully connected	2     | Output with size of known labels              | (?, 120) -> (?, 43) |
 | RELU Activation	5			|												                        | -                   |
 
-The details in the images are very sublte and adding a Convolutional layer will give the network more space for recognizing features. The count of Fully connected layers was kept to two as adding more did not seem to have the disired effect of improving the accuracy. The first iterations started to fluctuate around certain accuracies from epoch ~15 onwards which can be an indication of overfitting. The added dropout layer improved overfitting and the accuracy slightly fluctuates in the last 10 or so epochs which can also be attributed to the randomnes of batched data. 
+The different convolutional, pooling and fully connected layers are depicted in the following AlexNet style schematic (created with the help of [NN-SVG](https://github.com/alexlenail/NN-SVG))
+
+![Neural network architecture](./explorations/NN-Architecture.png)
+
+The details in the images are very sublte and adding a Convolutional layer will give the network more space for recognizing features. The count of Fully connected layers was kept to two as adding more did not seem to have the disired effect of improving the accuracy. The first iterations started to fluctuate around certain accuracies from epoch ~15 onwards which can be an indication of overfitting. The added dropout layer improved overfitting and the accuracy slightly fluctuates in the last 10 or so epochs which can also be attributed to the randomnes of batched data.
 #### 3. Describe how you trained your model
 
 First I build the network similar to the LeNet network and chose initially to train the model with proposed starting settings
