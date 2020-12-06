@@ -285,6 +285,8 @@ It could even detect 2 out of 5 images (0.400) from the custom set of 5 random G
 
 I learned that it is very important to do deep explorations of the data and that additional work is required to squeeze out some more accuracy percentages from the model. The current model is good enough and will surely benefit from doing smart augmentations on the dataset using the Tensorfow tf.Data and Dataset API's.
 
+All that I've learned here will be very helpful in the next project: Use Deep Learning to Clone Driving Behavior.
+
 ## Resources and further reading
 
 * [Traffic Sign Recognition with Multi-Scale Convolutional Networks](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf)
@@ -293,3 +295,5 @@ I learned that it is very important to do deep explorations of the data and that
 * [Simple and efficient data augmentations using the Tensorfow tf.Data and Dataset API](https://www.wouterbulten.nl/blog/tech/data-augmentation-using-tensorflow-data-dataset/)
 * [Fixing imbalanced datasets](https://towardsdatascience.com/having-an-imbalanced-dataset-here-is-how-you-can-solve-it-1640568947eb)
 * [Notes on How to choose Optimizer In Keras](https://www.dlology.com/blog/quick-notes-on-how-to-choose-optimizer-in-keras/)
+* [Popular augmentation packages](https://www.kaggle.com/parulpandey/overview-of-popular-image-augmentation-packages)
+* [](https://www.cs.ryerson.ca/~aharley/vis/conv/)
